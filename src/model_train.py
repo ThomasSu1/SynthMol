@@ -417,10 +417,9 @@ class SynthMolClassifier(nn.Module):
             [molecule_embedding1, graph_embedding, fingerprint_embedding],
             dim=-1,
         )
-        x2 = nn.LayerNorm(x1)
-        x3 = self.mlp(x2)
+        x2 = self.mlp(x1)
         os.remove(csv_file_path)
-        return x3
+        return x2
 
 
 def evaluate(model, data_loader, csv_save):

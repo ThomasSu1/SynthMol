@@ -1,4 +1,4 @@
-# enviroment
+# Enviroment
 pytho==3.8.10
 
 torch==2.0.1

@@ -15,6 +15,7 @@ $ pip install torch-geometric==1.7.2
 $ pip install numpy==1.22.1
 $ pip install pandas==2.0.3
 $ pip install rdkit==2023.9.4
+# Uni-Mol install https://github.com/dptech-corp/Uni-Mol.git
 
 # clone the source code of SynthMol
 $ git clone https://github.com/ThomasSu1/SynthMol.git
@@ -36,3 +37,6 @@ $ cd SynthMol/src
 # Run the training script
 $ python model_train.py
 ```
+# Acknowledgement
+
+- Uni-Mol: [https://github.com/ThomasSu1/SynthMol.git](https://github.com/ThomasSu1/SynthMol.git)

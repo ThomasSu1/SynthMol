@@ -1,3 +1,8 @@
+# -*- coding: utf-8 -*-
+"""
+Author: Zidong SU
+Date: 2024-03
+"""
 import numpy as np
 import logging
 import pandas as pd
@@ -42,12 +47,15 @@ from graph.getFeatures import save_smiles_dicts, get_smiles_array
 
 from fingerprint.fingerprint import FP
 
-
+# Set up logging to track the training process
 logging.basicConfig(filename="model_training.log", level=logging.INFO)
-data_path = "./dataset.csv"  
+
 
 
 def set_random_seed(random_seed=1024):
+    """
+    Set the random seed for reproducibility.
+    """
     random.seed(random_seed)
     os.environ['PYTHONHASHSEED'] = str(random_seed)
     np.random.seed(random_seed)
@@ -60,6 +68,9 @@ def set_random_seed(random_seed=1024):
 
 
 def calculate_molecule_3D_structure():
+    """
+    Calculate 3D structures for molecules from SMILES strings and store the results.
+    """
     def get_smiles_list_():
         data_df = pd.read_csv(data_path)
         smiles_list = data_df["smiles"].tolist()
@@ -135,6 +146,9 @@ def calculate_molecule_3D_structure():
 
 
 def construct_data_list():
+    """
+    Construct a data list from the dataset and calculated 3D structures.
+    """
     data_df = pd.read_csv(data_path)
     smiles_to_conformation_dict = pkl.load(
         open('./intermediate/smiles_to_conformation_dict.pkl', 'rb'))
@@ -154,6 +168,9 @@ def construct_data_list():
 
 
 def convert_data_list_to_data_loader():
+    """
+    Convert the data list to DataLoader for training and evaluation.
+    """
     def convert_data_list_to_dataset_(data_list):
         dictionary = Dictionary.load('token_list.txt')
         dictionary.add_symbol("[MASK]", is_special=True)
@@ -203,6 +220,9 @@ def convert_data_list_to_data_loader():
 
 
 class UniMolModel(nn.Module):
+    """
+    A model for encoding molecular structures using Uni-Mol.
+    """
     def __init__(self):
         super().__init__()
         dictionary = Dictionary.load('token_list.txt')
@@ -527,13 +547,14 @@ def train(trial_version, epochs):
 
 
 if __name__ == "__main__":
+    data_path = "./dataset.csv"  
+    
     set_random_seed(1024)
     print("data_process start!") 
+    
     calculate_molecule_3D_structure()
     construct_data_list()
-
     print("train start!") 
-    
-    train(trial_version='1',epochs=100) 
 
+    train(trial_version='1',epochs=100) 
     print('All is well!')

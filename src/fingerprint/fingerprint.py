@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import torch
 import torch.nn as nn
 import numpy as np
@@ -8,9 +10,10 @@ from fingerprint.pubchemfp import pubchemfp
 
 atts_out = []
 
+# Device configuration: Use CUDA if available, else use CPU
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
 class FP(nn.Module):
-    
     atts_out = []
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     def __init__(self):
@@ -27,8 +30,6 @@ class FP(nn.Module):
         self.act_func = nn.ReLU()
         self.fc2 = nn.Linear(self.fp_2_dim, self.hidden_dim)
         self.dropout = nn.Dropout(p=self.dropout_fp)
-
-    
 
     def forward(self, smiles_list1):
         fp_list=[]

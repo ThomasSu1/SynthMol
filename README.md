@@ -39,4 +39,4 @@ $ python model_train.py
 ```
 # Acknowledgement
 
-- Uni-Mol: [https://github.com/ThomasSu1/SynthMol.git](https://github.com/ThomasSu1/SynthMol.git)
+- Uni-Mol: [https://github.com/deepmodeling/Uni-Mol/tree/main](https://github.com/deepmodeling/Uni-Mol/tree/main)

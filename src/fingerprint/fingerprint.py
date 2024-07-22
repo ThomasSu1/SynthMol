@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import torch
 import torch.nn as nn
 import numpy as np
@@ -8,9 +10,10 @@ from fingerprint.pubchemfp import pubchemfp
 
 atts_out = []
 
+# Device configuration: Use CUDA if available, else use CPU
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
 class FP(nn.Module):
-    
     atts_out = []
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     def __init__(self):

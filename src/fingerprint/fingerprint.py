@@ -31,8 +31,6 @@ class FP(nn.Module):
         self.fc2 = nn.Linear(self.fp_2_dim, self.hidden_dim)
         self.dropout = nn.Dropout(p=self.dropout_fp)
 
-    
-
     def forward(self, smiles_list1):
         fp_list=[]
         for i, one in enumerate(smiles_list1):
